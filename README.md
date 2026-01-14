@@ -45,12 +45,48 @@ Camus is not intended to be a specification language, a domain-specific language
 ## The Core Problem Camus Solves
 The core problem Camus aims to address is not generating code from intentions, but understanding what the generated code actually does. Code produced by AI can be correct yet difficult to audit, especially when languages allow implicit constructs or when the AI introduces unexpected behavior. Camus aims to minimize such complexity by ensuring that every function, step, and block is explainable and auditable, allowing human reviewers to fully grasp the effects of the code, and ensuring that every generated step reflects its intended purpose.
 
+## Deep Motivations
+
+### The Fantasy of Cryptic AI Languages
+
+[A recent experiment](https://github.com/ImJasonH/ImJasonH/blob/main/articles/llm-programming-language.md) attempted to have AI systems design a programming language optimized to minimize token consumption, deliberately setting aside readability concerns. The first attempt produced a cryptic language—but the AI proved unable to build a compiler for it. When another AI was consulted, it proposed a surprisingly *more readable* solution, leading the experimenter to realize that "optimized for AI" doesn't mean "incomprehensible to humans."
+
+This outcome contradicts predictions that AI systems might develop cryptic, human-incomprehensible programming languages. It reveals a fundamental truth: Large Language Models are models of *human language*, trained on human communication patterns. A programming language truly "optimized for AI" would be *more readable*, not less. LLMs perform better with explicit code, verbose documentation, and clear structure. The clarity that helps humans understand code is precisely what helps AI systems process it effectively.
+
+### The Token Density Fallacy
+
+The idea of creating dense, compressed languages to save tokens is counterproductive. Reducing verbosity diminishes clarity, which increases misunderstandings and errors. This, in turn, generates costly back-and-forth corrections that far exceed any initial token savings. As developers have noted, [code that is "boring to read"](https://randuck.dev/blog/embracing-boring-code) may be a quality, not a flaw—predictability means no surprises, and no surprises means no unpleasant surprises.
+
+### The Responsibility Problem
+
+The core challenge with AI-generated code is not cost or performance—it's **accountability**. When we delegate decisions to AI, who bears responsibility for the outcomes? The developer who chose convenience? The AI designer who didn't provide adequate decision-making capabilities? Chance itself? The AI?
+
+Responsibility isn't merely about credit or blame—it's about who faces concrete consequences when things go wrong: who repairs, compensates, pays, or faces legal sanctions. It makes no sense to fine or imprison an AI system.
+
+### The Asimov Principle
+
+Isaac Asimov found stories about robot uprisings absurd. His reasoning, [articulated through his Three Laws of Robotics](https://en.wikipedia.org/wiki/Three_Laws_of_Robotics#History), was simple: when we design tools, we build in safeguards against injury. While accidents happen, the notion that we'd march toward universal catastrophe due to a design flaw is fundamentally illogical.
+
+This principle applies to AI code generation. We must design systems that prevent self-harm by design, not hope to retrofit safety after the fact.
+
+### Auditability as the Solution
+
+For a human to legitimately assume responsibility for AI-generated code, they must be able to audit it thoroughly. This requires the code to be perfectly readable and the AI's reasoning to be transparent.
+
+This paradigm shift is the only viable path to solving the accountability problem: **require AI systems to explain their reasoning before entrusting them with significant decisions**. Since the internal workings of modern AI have become opaque to us, we must mandate external explicability as a prerequisite for delegation.
+
+### The Camus Approach
+
+This project embodies these principles: creating a framework where AI-generated code must be auditable and accompanied by clear explanations of architectural decisions and reasoning. The human review occurs after code generation and validation (compilation, testing), but before final compilation and production deployment. The human developer audits both the code and its rationale, assumes responsibility for the choices, and the resulting code becomes code that is truly *owned* rather than merely *accepted*.
+
+This is not about limiting AI capability—it's about structuring human-AI collaboration so that responsibility remains where it must: with humans who can be accountable for consequences.
+
 ## Roadmap
 
-1. Refine syntax and core abstractions  
-2. Define formal model for intention and responsibility  
-3. Explore transcompilation to existing languages  
-4. Gradually prototype execution and validation tools  
+- [ ] Define syntax and core abstractions  
+- [ ] Define formal model for intention and responsibility  
+- [ ] Explore transcompilation to existing languages  
+- [ ] Gradually prototype execution and validation tools  
 
 ## Join the Discussion
 
