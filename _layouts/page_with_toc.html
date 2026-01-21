@@ -1,0 +1,20 @@
+---
+layout: page
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/toc.css' | relative_url }}" />
+
+<article class="post">
+    <div class="post-content">
+        {% if page.show_toc != false %}
+        <div id="toc" style="display: none">
+            <strong>Table of Contents</strong>
+            <!-- TOC will be generated here by JavaScript -->
+        </div>
+        {% endif %}
+
+        <div class="content-body">{{ content }}</div>
+    </div>
+</article>
+
+<script src="{{ '/assets/js/toc.js' | relative_url }}"></script>

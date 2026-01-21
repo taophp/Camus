@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>MuseTag {{ page.title }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+            body {
+                font-family: "Segoe UI", Arial, sans-serif;
+                background: #fff;
+                color: #222;
+                padding: 1vw;
+            }
+            nav.cheat-nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.7em;
+                align-items: center;
+                background: #dc143c11;
+                border-bottom: 1px solid #dc143c33;
+                padding: 0.4em 0.7em;
+                margin-bottom: 1.2em;
+            }
+            nav.cheat-nav a {
+                color: #222;
+                text-decoration: none;
+                padding: 0.2em 0.7em;
+                border-radius: 3px;
+                transition: background 0.2s;
+            }
+            nav.cheat-nav a:hover,
+            nav.cheat-nav a:focus {
+                background: #dc143caa;
+            }
+            h1 {
+                padding: 0.5em 0.5em 0 0;
+                font-size: 2em;
+                border: 3px solid #dc143c;
+                border-right: 0;
+                border-left: 0;
+            }
+            .cheat-grid {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1.2em 1.5em;
+            }
+            .cheat-grid > * {
+                flex: 1 1 340px;
+                min-width: 320px;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+            table {
+                border-collapse: collapse;
+                margin: 0 0 1em 0;
+            }
+            th,
+            td {
+                border: none;
+                padding: 0.18em 0.4em;
+                vertical-align: top;
+            }
+            th {
+                background: #dc143c33;
+                font-weight: 600;
+            }
+            tr:nth-child(odd) {
+                background: #dc143c11;
+            }
+            caption {
+                caption-side: top;
+                font-weight: bold;
+                font-size: 1.08em;
+                padding: 0.5em 0 0.25em 0.75em;
+                color: #fff;
+                background: #dc143c;
+                border-top-left-radius: 0.5em;
+                border-top-right-radius: 0.54em;
+                text-align: left;
+            }
+            code,
+            kbd {
+                background: #f8f8f8;
+                padding: 0.1em 0.3em;
+                border-radius: 3px;
+                font-size: 0.98em;
+                font-family: "Fira Mono", "Consolas", "Menlo", monospace;
+            }
+            @media print {
+                body {
+                    box-shadow: none;
+                    padding: 0.7cm;
+                    max-width: 21cm;
+                    min-height: 29.7cm;
+                    color-adjust: exact;
+                    -webkit-print-color-adjust: exact;
+                }
+                nav.cheat-nav {
+                    display: none;
+                }
+                .cheat-grid {
+                    gap: 0.7em 1em;
+                }
+            }
+            * {
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="cheat-nav">
+            <a href="/">Home</a>
+            {% for p in site.pages %} {% if p.title and p.url != page.url %}
+            <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+            {% endif %} {% endfor %}
+        </nav>
+        <h1>MuseTag Cheat Sheet</h1>
+        <div class="cheat-grid">{{ content }}</div>
+    </body>
+</html>

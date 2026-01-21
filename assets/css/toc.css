@@ -1,0 +1,523 @@
+/* Table of Contents with Fixed Sidebar and Auto-numbering */
+
+/* Auto-numbering for headings - only in main content and starting from H2 */
+.main-content {
+    counter-reset: h2-counter;
+}
+
+.main-content h2 {
+    counter-reset: h3-counter;
+    counter-increment: h2-counter;
+}
+
+.main-content h2::before {
+    content: counter(h2-counter) ". ";
+    color: #666;
+    font-weight: normal;
+}
+
+.main-content h3 {
+    counter-reset: h4-counter;
+    counter-increment: h3-counter;
+}
+
+.main-content h3::before {
+    content: counter(h2-counter) "." counter(h3-counter) " ";
+    color: #666;
+    font-weight: normal;
+}
+
+.main-content h4 {
+    counter-reset: h5-counter;
+    counter-increment: h4-counter;
+}
+
+.main-content h4::before {
+    content: counter(h2-counter) "." counter(h3-counter) "." counter(h4-counter)
+        " ";
+    color: #666;
+    font-weight: normal;
+}
+
+.main-content h5 {
+    counter-reset: h6-counter;
+    counter-increment: h5-counter;
+}
+
+.main-content h5::before {
+    content: counter(h2-counter) "." counter(h3-counter) "." counter(h4-counter)
+        "." counter(h5-counter) " ";
+    color: #666;
+    font-weight: normal;
+}
+
+.main-content h6 {
+    counter-increment: h6-counter;
+}
+
+.main-content h6::before {
+    content: counter(h2-counter) "." counter(h3-counter) "." counter(h4-counter)
+        "." counter(h5-counter) "." counter(h6-counter) " ";
+    color: #666;
+    font-weight: normal;
+}
+
+/* Disable numbering for specific headings */
+.no-number::before {
+    content: none !important;
+    counter-increment: none !important;
+}
+
+/* Container for layout with sidebar */
+.content-with-sidebar {
+    position: relative;
+}
+
+/* Desktop layout with TOC in left margin - apply to main containers */
+@media (min-width: 1201px) {
+    .wrapper,
+    .site-header .wrapper,
+    .site-footer .wrapper {
+        margin-left: 320px; /* Space for TOC + gap */
+        max-width: calc(100% - 320px);
+    }
+
+    /* Reset for nested wrappers to avoid double margins */
+    .wrapper .wrapper {
+        margin-left: 0;
+        max-width: 100%;
+    }
+}
+
+/* TOC Sidebar - Default mobile first, then desktop override */
+#toc {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    padding: 1.5rem;
+    margin: 0 0 2rem 0;
+    overflow-y: auto;
+    position: static;
+    z-index: 1;
+}
+
+/* Desktop: Fixed sidebar */
+@media (min-width: 1201px) {
+    #toc {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px;
+        height: 100vh;
+        margin: 0;
+        z-index: 10;
+    }
+}
+
+/* Prevent multiple TOC instances - simplified */
+#toc + #toc {
+    display: none !important;
+}
+
+#toc h2,
+#toc h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #495057;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 0.5rem;
+}
+
+/* Main content area */
+.main-content {
+    width: 100%;
+    max-width: none;
+    padding-right: 1rem;
+}
+
+/* TOC Navigation styling - numbering starts from H2 */
+.toc-nav {
+    counter-reset: h2;
+}
+
+.toc-nav ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.toc-nav ul ul {
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.toc-nav li {
+    margin: 0.3rem 0;
+    line-height: 1.4;
+}
+
+/* Counter increments for TOC - simple approach */
+.toc-nav > ul > li {
+    counter-increment: h2;
+    counter-reset: h3;
+}
+
+.toc-nav > ul > li > ul {
+    counter-reset: h3;
+}
+
+.toc-nav > ul > li > ul > li {
+    counter-increment: h3;
+    counter-reset: h4;
+}
+
+.toc-nav > ul > li > ul > li > ul {
+    counter-reset: h4;
+}
+
+.toc-nav > ul > li > ul > li > ul > li {
+    counter-increment: h4;
+    counter-reset: h5;
+}
+
+.toc-nav > ul > li > ul > li > ul > li > ul {
+    counter-reset: h5;
+}
+
+.toc-nav > ul > li > ul > li > ul > li > ul > li {
+    counter-increment: h5;
+    counter-reset: h6;
+}
+
+.toc-nav > ul > li > ul > li > ul > li > ul > li > ul {
+    counter-reset: h6;
+}
+
+.toc-nav > ul > li > ul > li > ul > li > ul > li > ul > li {
+    counter-increment: h6;
+}
+
+/* TOC link styling with numbers */
+.toc-nav a {
+    color: #007bff;
+    text-decoration: none;
+    display: block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    position: relative;
+    border-left: 3px solid transparent;
+}
+
+.toc-nav > ul > li > a::before {
+    content: counter(h2) ". ";
+    color: #666;
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.toc-nav > ul > li > ul > li > a::before {
+    content: counter(h2) "." counter(h3) " ";
+    color: #666;
+    font-weight: 500;
+    margin-right: 0.5rem;
+}
+
+.toc-nav > ul > li > ul > li > ul > li > a::before {
+    content: counter(h2) "." counter(h3) "." counter(h4) " ";
+    color: #666;
+    font-weight: normal;
+    margin-right: 0.5rem;
+}
+
+.toc-nav > ul > li > ul > li > ul > li > ul > li > a::before {
+    content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) " ";
+    color: #495057;
+    font-weight: normal;
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.toc-nav > ul > li > ul > li > ul > li > ul > li > ul > li > a::before {
+    content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "."
+        counter(h6) " ";
+    color: #495057;
+    font-weight: normal;
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.toc-nav a:hover {
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-left-color: #007bff;
+    transform: translateX(3px);
+}
+
+.toc-nav a:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+/* Active link styling */
+.toc-nav a.active {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    border-left-color: #1976d2;
+    font-weight: 600;
+}
+
+/* Different levels styling */
+.toc-nav > ul > li > a {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.toc-nav ul ul a {
+    font-weight: 500;
+    color: #495057;
+}
+
+.toc-nav ul ul a:hover {
+    background-color: #495057;
+    color: white;
+}
+
+.toc-nav ul ul ul a {
+    font-size: 0.85rem;
+    color: #6c757d;
+    font-weight: normal;
+}
+
+.toc-nav ul ul ul a:hover {
+    background-color: #6c757d;
+}
+
+.toc-nav ul ul ul ul a {
+    font-size: 0.85rem;
+    color: #495057;
+    font-weight: 500;
+}
+
+.toc-nav ul ul ul ul a:hover {
+    background-color: #495057;
+}
+
+.toc-nav ul ul ul ul ul a {
+    font-size: 0.85rem;
+    color: #495057;
+    font-weight: 500;
+    padding-left: 1rem;
+}
+
+.toc-nav ul ul ul ul ul a:hover {
+    background-color: #495057;
+}
+
+/* Scrollbar styling for TOC */
+#toc::-webkit-scrollbar {
+    width: 6px;
+}
+
+#toc::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+#toc::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+#toc::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Mobile and tablet - reset desktop overrides */
+@media (max-width: 1200px) {
+    .wrapper,
+    .page-content,
+    .site-header .wrapper,
+    .site-footer .wrapper,
+    .content-with-sidebar {
+        margin-left: 0;
+        max-width: 100%;
+    }
+
+    .main-content {
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    #toc {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        left: -15px;
+    }
+
+    .toc-nav ul ul {
+        padding-left: 1rem;
+    }
+
+    .toc-nav a {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .toc-nav > ul > li > a {
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    #toc {
+        padding: 0.75rem;
+        max-height: 250px;
+        margin-bottom: 1rem;
+    }
+
+    .toc-nav a {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.5rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    #toc {
+        background: white;
+        border: 1px solid #ccc;
+        page-break-inside: avoid;
+        position: static;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .toc-nav a {
+        color: #000;
+        text-decoration: underline;
+    }
+
+    .content-with-sidebar {
+        flex-direction: column;
+    }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+    #toc {
+        background: #2d3748;
+        border-color: #4a5568;
+    }
+
+    #toc h2,
+    #toc h3 {
+        color: #e2e8f0;
+        border-bottom-color: #4a5568;
+    }
+
+    .toc-nav a {
+        color: #63b3ed;
+    }
+
+    .toc-nav a:hover {
+        background-color: #63b3ed;
+        color: #1a202c;
+    }
+
+    .toc-nav a.active {
+        background-color: #2a4a6b;
+        color: #90cdf4;
+        border-left-color: #90cdf4;
+    }
+
+    .toc-nav ul ul a {
+        color: #a0aec0;
+    }
+
+    .toc-nav ul ul a:hover {
+        background-color: #a0aec0;
+        color: #1a202c;
+    }
+
+    .toc-nav ul ul ul a {
+        color: #a0aec0;
+    }
+
+    .toc-nav ul ul ul ul a {
+        color: #cbd5e0;
+    }
+
+    .toc-nav ul ul ul ul ul a {
+        color: #cbd5e0;
+    }
+
+    .main-content h2::before,
+    .main-content h3::before,
+    .main-content h4::before,
+    .main-content h5::before,
+    .main-content h6::before {
+        color: #a0aec0;
+    }
+
+    .toc-nav > ul > li > ul > li > ul > li > ul > li > a::before,
+    .toc-nav > ul > li > ul > li > ul > li > ul > li > ul > li > a::before {
+        color: #a0aec0 !important;
+    }
+
+    #toc::-webkit-scrollbar-track {
+        background: #4a5568;
+    }
+
+    #toc::-webkit-scrollbar-thumb {
+        background: #718096;
+    }
+
+    #toc::-webkit-scrollbar-thumb:hover {
+        background: #a0aec0;
+    }
+}
+
+/* Animation for smooth transitions */
+.toc-nav a {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toc-nav a:hover {
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
+}
+
+.site-header {
+    position: fixed;
+    width: 100%;
+    z-index: 20;
+    background: var(--minima-background-color);
+    border: none;
+}
+
+main {
+    margin-top: 3.5rem;
+}
+
+#toc {
+    z-index: 40;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    scroll-margin-top: 2em;
+}
+
+html {
+    scroll-behavior: smooth;
+}

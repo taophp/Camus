@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MuseTag Editor</title>
+        <meta
+            name="description"
+            content="A demonstration interface for the MuseTag annotation language."
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Source+Code+Pro:wght@400;600&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/assets/style.css" />
+    </head>
+    <body>
+        <div class="main-container">
+            <aside id="character-entities" class="entity-panel">
+                <div class="musetag-header">
+                    <h1><a href="/">MuseTag</a></h1>
+                </div>
+                <!-- Character entity cards will be injected here -->
+            </aside>
+
+            <div id="resizer-left" class="resizer-vertical"></div>
+
+            <div id="central-column">
+                <div id="editor-area" class="editor-pane">
+                    <textarea
+                        id="musetag-editor"
+                        placeholder="Once upon a time..."
+                    ></textarea>
+                </div>
+                <div id="resizer" class="resizer-horizontal"></div>
+                <div id="preview-area" class="editor-pane">
+                    <div class="preview-controls">
+                        <span>Preview</span>
+                        <div class="toggle-switch">
+                            <button id="view-md-btn" title="Show as Markdown">
+                                MD
+                            </button>
+                            <button
+                                id="view-html-btn"
+                                class="active"
+                                title="Show as HTML"
+                            >
+                                HTML
+                            </button>
+                        </div>
+                    </div>
+                    <div id="preview-output"></div>
+                </div>
+            </div>
+
+            <div id="resizer-right" class="resizer-vertical"></div>
+
+            <aside id="other-entities-panel" class="entity-panel">
+                <div id="document-outline-area">
+                    <!-- Document outline will be injected here -->
+                </div>
+                <div id="hierarchy-area">
+                    <!-- Hierarchy tree will be injected here -->
+                </div>
+                <div id="other-entities">
+                    <!-- Other entity cards will be injected here -->
+                </div>
+            </aside>
+        </div>
+
+        <div id="timeline-container">
+            <h3>Timeline</h3>
+            <div id="timeline-axis">
+                <!-- Timeline markers will be injected here -->
+            </div>
+        </div>
+
+        <script src="/assets/app.js"></script>
+        <!-- Pour la conversion Markdown -> HTML -->
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    </body>
+</html>

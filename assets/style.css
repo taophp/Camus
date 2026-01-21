@@ -1,0 +1,922 @@
+/* --- Variables --- */
+:root {
+    --font-serif: "Lora", serif;
+    --font-mono: "Source Code Pro", monospace;
+    --color-background: #1a1a1d;
+    --color-surface: #2c2f33;
+    --color-primary: #c5c8c6;
+    --color-preview-text: #e0e2e4;
+    --color-secondary: #81a2be;
+    --color-accent: #b294bb;
+    --border-color: #444;
+    --width-editor: 40em;
+}
+
+/* --- Reset & Global Styles --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-serif);
+    background-color: var(--color-background);
+    color: var(--color-primary);
+    line-height: 1.7;
+    height: 100vh;
+    overflow: hidden; /* Prevent body scrolling */
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Layout --- */
+.main-container {
+    display: grid;
+    /* Resizers are 10px wide */
+    grid-template-columns: 1fr 10px var(--width-editor) 10px 1fr;
+    column-gap: 1.5rem;
+    padding: 1.5rem;
+    flex: 1;
+    overflow: hidden;
+}
+
+.entity-panel {
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* --- MuseTag Header --- */
+.musetag-header {
+    padding: 1rem;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.musetag-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.musetag-header h1 a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.musetag-header h1 a:hover {
+    color: var(--color-accent);
+}
+
+#central-column {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Collapse the gap from the resizers by pulling the column over it */
+    margin: 0 -1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Editor --- */
+.editor-pane {
+    position: relative; /* For potential future additions */
+    flex: 1 1 0; /* Grow and shrink, basis 0 */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Panes themselves don't scroll */
+    min-height: 5rem; /* Minimum height before being squashed */
+}
+
+#musetag-editor {
+    flex-grow: 1;
+    width: 100%;
+    padding: 1rem;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--color-primary);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    line-height: 1.7;
+}
+
+#musetag-editor::placeholder {
+    color: #5c5f62;
+}
+
+/* --- Resizer --- */
+.resizer-horizontal {
+    flex: 0 0 10px; /* Don't grow, don't shrink, basis 10px */
+    background-color: transparent;
+    cursor: row-resize;
+    position: relative;
+    transition: background-color 0.2s;
+}
+
+.resizer-horizontal:hover {
+    background-color: rgba(178, 148, 187, 0.2); /* Accent color transparent */
+}
+
+.resizer-horizontal::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 40%;
+    right: 40%;
+    height: 2px;
+    background-color: var(--border-color);
+}
+
+.resizer-vertical {
+    cursor: col-resize;
+    position: relative;
+    z-index: 2; /* Must be on top of the central column's margin */
+    transition: background-color 0.2s;
+}
+
+.resizer-vertical:hover {
+    background-color: rgba(178, 148, 187, 0.2);
+}
+
+.resizer-vertical::before {
+    content: "";
+    position: absolute;
+    left: 4px; /* Centered in the 10px column */
+    top: 45%;
+    bottom: 45%;
+    width: 2px;
+    background-color: var(--border-color);
+}
+
+/* --- Side Panels --- */
+.entity-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* --- Preview Area --- */
+#preview-area {
+    background-color: var(--color-surface);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    border-top: 2px solid var(--border-color);
+}
+
+.preview-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9rem;
+}
+
+.preview-controls span {
+    font-weight: 600;
+    color: var(--color-secondary);
+}
+
+.toggle-switch button {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background: none;
+    border: 1px solid transparent;
+    color: var(--color-primary);
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+    transition:
+        background-color 0.2s,
+        border-color 0.2s;
+}
+
+.toggle-switch button.active {
+    background-color: var(--color-accent);
+    color: var(--color-background);
+    border-radius: 4px;
+}
+
+.toggle-switch button:not(.active):hover {
+    border-color: var(--color-accent);
+    border-radius: 4px;
+}
+
+#preview-output {
+    padding: 1rem;
+    overflow-y: auto;
+    flex-grow: 1;
+    font-size: 0.95rem;
+    word-wrap: break-word; /* Prevent long strings from overflowing */
+}
+
+/* Only apply pre-wrap in Markdown view */
+#preview-output.markdown-view {
+    white-space: pre-wrap;
+}
+
+/* Use normal white-space in HTML view */
+#preview-output.html-view {
+    white-space: normal;
+}
+
+/* Styles for HTML preview */
+#preview-output h1,
+#preview-output h2,
+#preview-output h3 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    color: var(--color-secondary);
+}
+
+#preview-output p {
+    margin-bottom: 1em;
+}
+
+#preview-output blockquote {
+    margin-left: 1em;
+    padding-left: 1em;
+    border-left: 3px solid var(--color-accent);
+    color: #9a9da0;
+}
+
+#preview-output code {
+    font-family: var(--font-mono);
+    background-color: var(--color-background);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+}
+
+#preview-output pre {
+    background-color: var(--color-background);
+    padding: 1em;
+    border-radius: 4px;
+    white-space: pre-wrap;
+}
+
+#preview-output pre code {
+    padding: 0;
+    background: none;
+}
+
+/* --- Entity Cards --- */
+#character-entities,
+#other-entities {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.entity-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: box-shadow 0.2s;
+    overflow: hidden;
+}
+.entity-card:hover {
+    box-shadow: 0 0 5px rgba(178, 148, 187, 0.5);
+}
+.entity-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    font-weight: bold;
+    color: var(--color-accent);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.entity-card-header:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.entity-card-body {
+    padding: 0 1rem 0.8rem 1rem;
+    max-height: 500px; /* Adjust as needed */
+    overflow-y: auto;
+    transition:
+        max-height 0.3s ease-in-out,
+        padding-top 0.3s ease-in-out,
+        padding-bottom 0.3s ease-in-out;
+}
+.entity-card.collapsed .entity-card-body {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+}
+.entity-card-body h5 {
+    color: var(--color-secondary);
+    margin-top: 0;
+    margin-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.2rem;
+    font-size: 0.9rem;
+}
+.entity-card-body ul {
+    list-style: none;
+    padding-left: 0.5rem;
+}
+.entity-card-body li {
+    margin-bottom: 0.2rem;
+    border-radius: 3px;
+    padding: 0.2rem 0.4rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.entity-card-body li:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+.entity-card-body li strong {
+    color: var(--color-primary);
+}
+.entity-card-body li em {
+    color: #888;
+    font-style: italic;
+}
+
+/* --- Nested Global Modifier Lists --- */
+
+.entity-card-body ul ul {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 1rem;
+    margin-top: 0.2rem;
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+    padding-left: 0.5rem;
+}
+
+.entity-card-body ul ul li {
+    font-size: 0.9em;
+    margin-bottom: 0.1rem;
+    padding: 0.1rem 0.3rem;
+    border-radius: 2px;
+    cursor: pointer;
+    color: var(--color-primary);
+}
+
+.entity-card-body ul ul li:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--color-secondary);
+}
+
+/* --- Entity Hierarchy Styles --- */
+
+/* Main entities (@@) */
+.entity-card.hierarchy-main {
+    border-left: 3px solid var(--color-secondary);
+}
+
+.entity-card.hierarchy-main .entity-card-header::after {
+    content: " ★★★";
+    color: var(--color-secondary);
+    font-size: 0.8em;
+    margin-left: 0.3em;
+}
+
+.entity-card.hierarchy-main .entity-card-header {
+    font-size: 1em;
+    font-weight: 600;
+}
+
+/* Secondary entities (@@@) */
+.entity-card.hierarchy-secondary {
+    border-left: 2px solid #64748b;
+}
+
+.entity-card.hierarchy-secondary .entity-card-header::after {
+    content: " ★★";
+    color: #64748b;
+    font-size: 0.8em;
+    margin-left: 0.3em;
+}
+
+.entity-card.hierarchy-secondary .entity-card-header {
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+/* Minor entities (@@@@) */
+.entity-card.hierarchy-minor {
+    border-left: 1px solid #94a3b8;
+}
+
+.entity-card.hierarchy-minor .entity-card-header::after {
+    content: " ★";
+    color: #94a3b8;
+    font-size: 0.8em;
+    margin-left: 0.3em;
+}
+
+.entity-card.hierarchy-minor .entity-card-header {
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+/* --- Pills for Minor Entities --- */
+
+.minor-entities-pills {
+    margin-top: 1rem;
+    padding: 0.5rem 0;
+}
+
+.minor-entities-pills h4 {
+    font-size: 0.8rem;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.pills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.expanded-cards-container {
+    margin-bottom: 0.5rem;
+}
+
+.expanded-cards-container .entity-card {
+    margin-bottom: 0.5rem;
+}
+
+.expanded-cards-container .entity-card:last-child {
+    margin-bottom: 0;
+}
+
+.entity-pill {
+    display: inline-block;
+    background-color: rgba(148, 163, 184, 0.2);
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    border-radius: 12px;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+    color: var(--color-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.entity-pill:hover {
+    background-color: rgba(148, 163, 184, 0.3);
+    border-color: rgba(148, 163, 184, 0.6);
+    transform: translateY(-1px);
+}
+
+.entity-pill.expanded {
+    background-color: rgba(129, 162, 190, 0.3);
+    border-color: var(--color-secondary);
+}
+
+/* --- Entity Type Sections --- */
+
+.entity-type-section {
+    margin-bottom: 2rem;
+}
+
+.entity-type-title {
+    font-size: 1.1rem;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+    font-weight: 600;
+}
+
+.entity-type-section .entity-card {
+    margin-bottom: 1rem;
+}
+
+.entity-type-section .entity-card:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Document Outline & Hierarchy --- */
+#document-outline-area,
+#hierarchy-area {
+    background-color: var(--color-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    flex-shrink: 0; /* Prevent the outline from shrinking */
+}
+
+/* Hierarchy-specific inner styling */
+#hierarchy-area {
+    /* keep container uncluttered; contents are created dynamically */
+    padding-top: 0.4rem;
+}
+
+/* Use the same panel title styling as the outline */
+#hierarchy-area .panel-title {
+    margin-top: 0;
+}
+
+/* Styling the tree nodes */
+#hierarchy-area details {
+    margin-bottom: 0.4rem;
+    padding: 0.25rem 0.25rem;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+#hierarchy-area summary {
+    cursor: pointer;
+    /* Allow the browser's native disclosure marker (don't suppress it) so it rotates naturally.
+       Keep other visual treatments for parity with the outline panel. */
+    list-style: initial;
+    outline: none;
+    padding: 0.15rem 0.2rem;
+    display: inline-block;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* Ensure the marker can rotate / be visually consistent when a details element is open.
+   Different engines expose the marker via ::marker or vendor pseudo-element. We apply a
+   transform to the pseudo-element where supported; browsers that natively rotate the
+   marker will keep their default behavior. */
+#hierarchy-area summary::marker,
+#hierarchy-area summary::-webkit-details-marker {
+    /* Keep marker aligned and allow rotation. The visual rotation is handled by the browser
+       for many implementations; this rule provides a graceful enhancement where transform is applied. */
+    display: inline-block;
+    transform-origin: center;
+}
+
+#hierarchy-area details[open] > summary::marker,
+#hierarchy-area details[open] > summary::-webkit-details-marker {
+    transform: rotate(90deg);
+}
+
+#hierarchy-area summary:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Remove default list markers and tighten nesting */
+#hierarchy-area ul {
+    list-style: none;
+    padding-left: 0.6rem;
+    margin: 0.2rem 0 0 0;
+}
+
+#hierarchy-area ul li {
+    margin: 0.15rem 0;
+}
+
+/* Details summaries deeper in the tree get a slightly smaller font */
+#hierarchy-area details details > summary {
+    font-weight: 500;
+    font-size: 0.95em;
+}
+
+/* Ensure color dots / colored summaries remain readable */
+#hierarchy-area summary[style] {
+    padding-left: 0.25rem;
+}
+
+/* Keep visual parity with the document outline panel */
+#hierarchy-area .panel-title {
+    font-weight: bold;
+    color: var(--color-secondary);
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.panel-title {
+    font-weight: bold;
+    color: var(--color-secondary);
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.document-outline-list {
+    list-style: none;
+    padding-left: 0;
+    font-size: 0.9rem;
+}
+
+.document-outline-list li {
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--color-primary);
+}
+
+/* Custom chevron styling for hierarchy panel (SVG chevrons with rotation animation) */
+#hierarchy-area .hierarchy-chevron svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+}
+
+#hierarchy-area .hierarchy-chevron {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.35rem;
+    color: var(--color-secondary);
+    transition: transform 0.18s ease;
+    transform-origin: center;
+}
+
+/* Rotate chevron when its parent details element is open */
+#hierarchy-area details[open] .hierarchy-chevron {
+    transform: rotate(90deg);
+}
+
+/* Ensure the entity name aligns nicely with the chevron */
+#hierarchy-area .hierarchy-summary .hierarchy-name {
+    vertical-align: middle;
+}
+
+.document-outline-list li:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.outline-level-1 {
+    font-weight: bold;
+}
+
+.outline-level-2,
+.outline-level-3,
+.outline-level-4 {
+    opacity: 0.9;
+}
+
+/* --- Scrollbar styling --- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+
+/* --- Timeline --- */
+#timeline-container {
+    height: 120px;
+    flex-shrink: 0;
+    padding: 0.5rem 1.5rem;
+    background-color: var(--color-surface);
+    border-top: 2px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+
+#timeline-container h3 {
+    display: none;
+}
+
+#timeline-axis {
+    position: relative;
+    height: 60px;
+    background-color: var(--color-background);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: visible;
+    flex: 1;
+}
+
+#timeline-axis::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--color-secondary);
+    transform: translateY(-50%);
+}
+
+.timeline-marker {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--color-accent);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.timeline-marker:hover {
+    background-color: var(--color-primary);
+}
+
+.timeline-marker::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.timeline-marker:hover::before {
+    background-color: var(--color-primary);
+}
+
+.timeline-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    transform-origin: center;
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    white-space: nowrap;
+    pointer-events: auto;
+    cursor: pointer;
+    background-color: var(--color-background);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    transition: background-color 0.2s;
+}
+
+.timeline-label:hover {
+    background-color: var(--color-surface);
+}
+
+/* Timeline labels at extremities with 90° rotation to prevent overflow */
+.timeline-label-left {
+    transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.timeline-label-right {
+    transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+/* --- Blog Styles --- */
+.post-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.post-list li {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.post-list li:last-child {
+    border-bottom: none;
+}
+
+.post-meta {
+    display: inline-block;
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-mono);
+}
+
+.post-list h3 {
+    margin: 0.5rem 0 1rem 0;
+    font-size: 1.4rem;
+    line-height: 1.3;
+}
+
+.post-link {
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.post-link:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+.post-excerpt {
+    color: var(--color-primary);
+    opacity: 0.9;
+    line-height: 1.6;
+    margin-top: 0.5rem;
+}
+
+.more-posts {
+    text-align: center;
+    margin: 2rem 0 1rem 0;
+    padding-top: 1rem;
+    border-top: 2px solid var(--border-color);
+}
+
+.more-posts a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-secondary);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.more-posts a:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+}
+
+.rss-subscribe {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.rss-subscribe a {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+.rss-subscribe a:hover {
+    text-decoration: underline;
+}
+
+/* Blog post content styles */
+.post-content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--color-secondary);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.post-content h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: var(--color-secondary);
+}
+
+.post-content blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background-color: var(--color-surface);
+    border-left: 4px solid var(--color-accent);
+    border-radius: 0 4px 4px 0;
+}
+
+.post-content blockquote p {
+    margin-bottom: 0;
+    font-style: italic;
+}
+
+.post-content pre {
+    background-color: var(--color-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+.post-content code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+}
+
+.post-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3rem 0 2rem 0;
+    padding: 1rem;
+    background-color: var(--color-surface);
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+.post-navigation a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.post-navigation a:hover {
+    background-color: rgba(129, 162, 190, 0.1);
+}
