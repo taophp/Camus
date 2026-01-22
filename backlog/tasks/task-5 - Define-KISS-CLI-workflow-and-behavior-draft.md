@@ -1,11 +1,17 @@
 ---
 id: task-5
-title: "Define KISS CLI workflow and behavior (draft)"
-status: "To Do"
-labels: ["spec","kiss","tooling"]
-assignee: ""
-milestone: "Tools (kiss)"
-parent: "task-1"
+title: Define KISS CLI workflow and behavior (draft)
+status: To Do
+assignee: []
+created_date: ''
+updated_date: '2026-01-22 14:20'
+labels:
+  - spec
+  - kiss
+  - tooling
+milestone: Tools (kiss)
+dependencies: []
+ordinal: 5000
 ---
 
 # Objective

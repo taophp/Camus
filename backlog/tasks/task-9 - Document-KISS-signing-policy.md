@@ -1,11 +1,17 @@
 ---
 id: task-9
-title: "Document KISS signing policy"
-status: "To Do"
-labels: ["spec","security","signing"]
-assignee: ""
-milestone: "Security & certification"
-parent: "task-1"
+title: Document KISS signing policy
+status: To Do
+assignee: []
+created_date: ''
+updated_date: '2026-01-22 14:20'
+labels:
+  - spec
+  - security
+  - signing
+milestone: Security & certification
+dependencies: []
+ordinal: 9000
 ---
 
 # Objective

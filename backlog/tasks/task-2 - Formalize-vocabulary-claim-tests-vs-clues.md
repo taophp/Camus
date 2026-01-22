@@ -4,13 +4,14 @@ title: 'Formalize vocabulary: claim, tests vs clues'
 status: To Do
 assignee: []
 created_date: ''
-updated_date: '2026-01-22 12:33'
+updated_date: '2026-01-22 14:20'
 labels:
   - backlog
   - config
   - process
 milestone: Initialisation
 dependencies: []
+ordinal: 2000
 ---
 
 ## Description

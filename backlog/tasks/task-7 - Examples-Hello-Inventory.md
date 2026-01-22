@@ -1,11 +1,17 @@
 ---
 id: task-7
-title: "Examples: Hello & Inventory"
-status: "To Do"
-labels: ["examples","doc","spec"]
-assignee: ""
-milestone: "Examples & Demonstrations"
-parent: "task-1"
+title: 'Examples: Hello & Inventory'
+status: To Do
+assignee: []
+created_date: ''
+updated_date: '2026-01-22 14:20'
+labels:
+  - examples
+  - doc
+  - spec
+milestone: Examples & Demonstrations
+dependencies: []
+ordinal: 7000
 ---
 
 # Objective

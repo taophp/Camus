@@ -1,11 +1,18 @@
 ---
 id: task-13
-title: "Registry specification (draft)"
-status: "To Do"
-labels: ["spec","registry","security","publication"]
-assignee: ""
-milestone: "Publication & registry"
-parent: "task-1"
+title: Registry specification (draft)
+status: To Do
+assignee: []
+created_date: ''
+updated_date: '2026-01-22 14:20'
+labels:
+  - spec
+  - registry
+  - security
+  - publication
+milestone: Publication & registry
+dependencies: []
+ordinal: 13000
 ---
 
 # Objective

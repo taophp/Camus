@@ -1,11 +1,19 @@
 ---
 id: task-12
-title: "KISS formatter & canonicalization specification"
-status: "To Do"
-labels: ["spec","formatter","canonicalization","kiss","tooling"]
-assignee: ""
-milestone: "Tools (kiss)"
-parent: "task-5"
+title: KISS formatter & canonicalization specification
+status: To Do
+assignee: []
+created_date: ''
+updated_date: '2026-01-22 14:20'
+labels:
+  - spec
+  - formatter
+  - canonicalization
+  - kiss
+  - tooling
+milestone: Tools (kiss)
+dependencies: []
+ordinal: 12000
 ---
 
 # Objective

@@ -1,11 +1,17 @@
 ---
 id: task-8
-title: "CI and Policy Integration"
-status: "To Do"
-labels: ["backlog","config","process"]
-assignee: ""
-milestone: "Initialisation"
-parent: "task-1"
+title: CI and Policy Integration
+status: To Do
+assignee: []
+created_date: ''
+updated_date: '2026-01-22 14:20'
+labels:
+  - backlog
+  - config
+  - process
+milestone: Initialisation
+dependencies: []
+ordinal: 8000
 ---
 
 functions:

@@ -1,11 +1,16 @@
 ---
 id: task-6
-title: "SPEC skeleton: draft SPEC.md structure"
-status: "To Do"
-labels: ["spec","doc"]
-assignee: ""
-milestone: "Language specifications"
-parent: "task-1"
+title: 'SPEC skeleton: draft SPEC.md structure'
+status: To Do
+assignee: []
+created_date: ''
+updated_date: '2026-01-22 14:20'
+labels:
+  - spec
+  - doc
+milestone: Language specifications
+dependencies: []
+ordinal: 6000
 ---
 
 # Objective

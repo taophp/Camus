@@ -1,11 +1,18 @@
 ---
 id: task-14
-title: "Propose a tree-sitter grammar for Camus"
-status: "To Do"
-labels: ["spec","parser","grammar","tooling"]
-assignee: ""
-milestone: "Syntax exploration"
-parent: "task-6"
+title: Propose a tree-sitter grammar for Camus
+status: To Do
+assignee: []
+created_date: ''
+updated_date: '2026-01-22 14:20'
+labels:
+  - spec
+  - parser
+  - grammar
+  - tooling
+milestone: Syntax exploration
+dependencies: []
+ordinal: 14000
 ---
 
 # Objective

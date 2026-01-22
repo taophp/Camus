@@ -4,12 +4,13 @@ title: Initialize the backlog and define milestones
 status: To Do
 assignee: []
 created_date: '2026-01-22 11:11'
-updated_date: '2026-01-22 12:28'
+updated_date: '2026-01-22 14:20'
 labels:
   - infrastructure
   - backlog
   - setup
 dependencies: []
+ordinal: 1000
 ---
 
 ## Description

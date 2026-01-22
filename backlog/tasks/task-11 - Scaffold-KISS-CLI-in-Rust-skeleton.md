@@ -1,11 +1,18 @@
 ---
 id: task-11
-title: "Scaffold KISS CLI in Rust (skeleton)"
-status: "To Do"
-labels: ["tooling","kiss","rust","cli"]
-assignee: ""
-milestone: "Tools (kiss)"
-parent: "task-5"
+title: Scaffold KISS CLI in Rust (skeleton)
+status: To Do
+assignee: []
+created_date: ''
+updated_date: '2026-01-22 14:20'
+labels:
+  - tooling
+  - kiss
+  - rust
+  - cli
+milestone: Tools (kiss)
+dependencies: []
+ordinal: 11000
 ---
 
 # Objective
