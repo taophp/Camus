@@ -1,3 +1,12 @@
+---
+id: task-2
+title: "Formalize vocabulary: claim, tests vs clues"
+status: "To Do"
+labels: ["backlog","config","process"]
+assignee: ""
+milestone: "Initialisation"
+---
+
 function sortList(list: Array[Int]) -> Array[Int]
   claim "Return a stable sorted list containing the same elements"
   tests {

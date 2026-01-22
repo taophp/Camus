@@ -1,4 +1,5 @@
 ---
+id: task-11
 title: "Scaffold KISS CLI in Rust (skeleton)"
 status: "To Do"
 labels: ["tooling","kiss","rust","cli"]

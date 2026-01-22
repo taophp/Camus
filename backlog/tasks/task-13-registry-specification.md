@@ -1,4 +1,5 @@
 ---
+id: task-13
 title: "Registry specification (draft)"
 status: "To Do"
 labels: ["spec","registry","security","publication"]

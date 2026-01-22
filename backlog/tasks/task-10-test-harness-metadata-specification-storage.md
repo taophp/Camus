@@ -1,3 +1,13 @@
+---
+id: task-10
+title: "Test harness: metadata specification & storage"
+status: "To Do"
+labels: ["backlog","config","process"]
+assignee: ""
+milestone: "Initialisation"
+parent: "task-1"
+---
+
 functions:
   - name: sortList
     source_hash: "sha256:..."

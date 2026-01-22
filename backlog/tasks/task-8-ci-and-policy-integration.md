@@ -1,3 +1,13 @@
+---
+id: task-8
+title: "CI and Policy Integration"
+status: "To Do"
+labels: ["backlog","config","process"]
+assignee: ""
+milestone: "Initialisation"
+parent: "task-1"
+---
+
 functions:
   - name: sortList
     source_hash: "sha256:..."

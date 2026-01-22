@@ -1,4 +1,5 @@
 ---
+id: task-12
 title: "KISS formatter & canonicalization specification"
 status: "To Do"
 labels: ["spec","formatter","canonicalization","kiss","tooling"]

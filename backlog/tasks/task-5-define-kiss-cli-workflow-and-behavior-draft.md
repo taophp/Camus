@@ -1,4 +1,5 @@
 ---
+id: task-5
 title: "Define KISS CLI workflow and behavior (draft)"
 status: "To Do"
 labels: ["spec","kiss","tooling"]

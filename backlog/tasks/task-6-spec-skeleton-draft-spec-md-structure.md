@@ -1,4 +1,5 @@
 ---
+id: task-6
 title: "SPEC skeleton: draft SPEC.md structure"
 status: "To Do"
 labels: ["spec","doc"]
