@@ -4,7 +4,7 @@ title: Initialize the backlog and define milestones
 status: To Do
 assignee: []
 created_date: '2026-01-22 11:11'
-updated_date: '2026-01-23 12:50'
+updated_date: '2026-01-23 14:08'
 labels:
   - infrastructure
   - backlog
@@ -34,7 +34,7 @@ Provide a base of clear tasks and milestones so that subsequent work is traceabl
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Each task listed in "Immediate tasks" exists as a separate file under `Camus/backlog/tasks/` (initial status `To Do`) and contains a description plus acceptance criteria.
+- [x] #1 Each task listed in "Immediate tasks" exists as a separate file under `Camus/backlog/tasks/` (initial status `To Do`) and contains a description plus acceptance criteria.
 - "Language specifications"
 - "Syntax exploration"
 - "Tools (kiss)"
