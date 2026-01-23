@@ -4,7 +4,7 @@ title: Initialize the backlog and define milestones
 status: To Do
 assignee: []
 created_date: '2026-01-22 11:11'
-updated_date: '2026-01-23 12:46'
+updated_date: '2026-01-23 12:47'
 labels:
   - infrastructure
   - backlog
@@ -35,6 +35,11 @@ Provide a base of clear tasks and milestones so that subsequent work is traceabl
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
 - [ ] #1 The following milestones are added to "Camus/backlog/config.yml":
+- "Language specifications"
+- "Syntax exploration"
+- "Tools (kiss)"
+- "Compilation & self-hosting"
+- "Website & documentation"
   - "Language specifications"
   - "Syntax exploration"
   - "Tools (kiss)"
