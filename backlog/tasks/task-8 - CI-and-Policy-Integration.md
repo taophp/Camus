@@ -4,7 +4,7 @@ title: CI and Policy Integration
 status: To Do
 assignee: []
 created_date: ''
-updated_date: '2026-01-22 14:20'
+updated_date: '2026-01-23 12:17'
 labels:
   - backlog
   - config
@@ -13,6 +13,21 @@ milestone: Initialisation
 dependencies: []
 ordinal: 8000
 ---
+
+## Description
+
+<!-- SECTION:DESCRIPTION:BEGIN -->
+functions:
+  - name: sortList
+    source_hash: "sha256:..."
+    tests_hash: "sha256:..."
+    test_seed: 123456789
+    test_result: "passed"
+    signer_id: "ed25519:alice@example.com"
+    signature: "base64..."
+    published: true
+```
+<!-- SECTION:DESCRIPTION:END -->
 
 functions:
   - name: sortList
@@ -78,3 +93,53 @@ functions:
 - Examples: `Camus/examples/hello.camus`, `Camus/examples/inventory.camus`.
 
 *End of ticket — implement subtasks incrementally and open follow-ups for signing UX and provider-specific CI adoption.*
+
+## Acceptance Criteria
+<!-- AC:BEGIN -->
+- [ ] #1 `CI_POLICY.md` is drafted and added to the repository (or a dedicated section in `60-design.md`) describing rules in plain English.
+- [ ] #2 A PR-check workflow example is added to the repo (e.g., `.github/workflows/pr-check.yml`) that:
+  - runs `kiss fmt --check`,
+  - runs `kiss test`,
+  - uploads structured test results as artifacts.
+- [ ] #3 A release workflow example is added (e.g., `.github/workflows/release.yml`) that:
+  - validates `kiss.lock` signatures and `published` flags,
+  - rejects attempts to publish `dev` artifacts or unsigned artifacts,
+  - enforces dependency trust rules for release mode.
+- [ ] #4 CI artifacts include test results with `seed` and test hashes; the policy doc references the `kiss.lock` schema and the artifact layout.
+- [ ] #5 A small verification script (e.g., `scripts/ci-verify-kiss-lock.js` or `scripts/ci-verify-kiss-lock.sh`) exists and is documented; an example invocation is shown in the release workflow.
+- [ ] #6 A PR template is added to require ticket reference and high-level checklist for PR authors (impact, tests, `kiss fmt` check, CI expectations).
+- [ ] #7 Follow-up tickets created for signing UX & key management and for implementing provider-specific CI jobs (if desired).
+- [ ] #8 At least one example PR demonstrates the PR-check and release-check flow on a trivial change (e.g., `examples/hello`)
+<!-- AC:END -->
+
+## Implementation Plan
+
+<!-- SECTION:PLAN:BEGIN -->
+Proposed subtasks
+
+1. Draft and commit `CI_POLICY.md` describing the policy and artifact expectations.
+2. Create example PR workflow (`.github/workflows/pr-check.yml`) that:
+   - runs `kiss fmt --check` and `kiss test`,
+   - uploads `.kiss/test-results` and test summaries as job artifacts.
+3. Create example release workflow (`.github/workflows/release.yml`) that:
+   - validates `kiss.lock` entries and signatures,
+   - rejects publishing of `dev` artifacts.
+4. Add a small verification script `scripts/ci-verify-kiss-lock.*` to assert required fields and signature presence (prototype).
+5. Add a PR template that requires Backlog ticket reference and a short PR checklist.
+6. Open follow-up tickets:
+   - signing UX & key management strategy,
+   - provider-specific CI implementation tasks (GitHub Actions example → other providers).
+7. Validate the end-to-end flow on a test PR that modifies an example (`Camus/examples/hello.camus`) and demonstrate proper artifact capture.
+<!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+# Open questions & decisions to escalate
+
+- Which CI provider(s) will be the canonical reference? (Recommend GitHub Actions examples, keep spec provider-agnostic.)
+- Signing key management approach: local CI secrets vs HSM vs external signing service (e.g., sigstore) — needs security review.
+- Level of enforcement during early development vs protected branches (e.g., more permissive on dev vs strict on main/release branches).
+- How to handle tests requiring external services in certification runs (sandboxing vs recorded test doubles)?
+- What is the exact JSON/YAML schema for `.kiss/test-results` and `kiss.lock`? (Specify and include schema files in `spec/`.)
+<!-- SECTION:NOTES:END -->
