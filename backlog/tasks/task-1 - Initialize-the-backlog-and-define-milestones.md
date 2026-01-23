@@ -45,6 +45,11 @@ Provide a base of clear tasks and milestones so that subsequent work is traceabl
   - `Tools (kiss)`
   - `Compilation & self-hosting`
   - `Website & documentation`
+  - `Language specifications`
+  - `Syntax exploration`
+  - `Tools (kiss)`
+  - `Compilation & self-hosting`
+  - `Website & documentation`
 - [ ] #2 Each task listed in "Immediate tasks" exists as a separate file under `Camus/backlog/tasks/` (initial status `To Do`) and contains a description plus acceptance criteria.
 - [ ] #3 A Jekyll file `60-design.md` is planned (ticket created) and its location is agreed (`Camus/60-design.md` or `Camus/_pages/60-design.md`) so it appears on the site.
 - [ ] #4 The "no implementation without a ticket" rule is recorded in `60-design.md` or `CONTRIBUTING.md`.
