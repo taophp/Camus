@@ -34,7 +34,12 @@ Provide a base of clear tasks and milestones so that subsequent work is traceabl
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 The following milestones are added to `Camus/backlog/config.yml`:
+- [ ] #1 The following milestones are added to "Camus/backlog/config.yml":
+  - "Language specifications"
+  - "Syntax exploration"
+  - "Tools (kiss)"
+  - "Compilation & self-hosting"
+  - "Website & documentation"
 - `Language specifications`
 - `Syntax exploration`
 - `Tools (kiss)`
