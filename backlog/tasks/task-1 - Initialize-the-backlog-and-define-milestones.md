@@ -4,7 +4,7 @@ title: Initialize the backlog and define milestones
 status: To Do
 assignee: []
 created_date: '2026-01-22 11:11'
-updated_date: '2026-01-23 14:26'
+updated_date: '2026-01-26 09:43'
 labels:
   - infrastructure
   - backlog
@@ -66,8 +66,7 @@ Provide a base of clear tasks and milestones so that subsequent work is traceabl
   - `Compilation & self-hosting`
   - `Website & documentation`
 - [x] #2 A Jekyll file `60-design.md` is planned (ticket created) and its location is agreed (`Camus/60-design.md` or `Camus/_pages/60-design.md`) so it appears on the site.
-- [ ] #3 The "no implementation without a ticket" rule is recorded in `60-design.md` or `CONTRIBUTING.md`.
-- [x] #4 The following milestones are added to "Camus/backlog/config.yml":, "Language specifications", "Syntax exploration", "Tools (kiss)", "Compilation & self-hosting", "Website & documentation"
+- [x] #3 The following milestones are added to "Camus/backlog/config.yml":, "Language specifications", "Syntax exploration", "Tools (kiss)", "Compilation & self-hosting", "Website & documentation"
 - "Language specifications"
 - "Syntax exploration"
 - "Tools (kiss)"
