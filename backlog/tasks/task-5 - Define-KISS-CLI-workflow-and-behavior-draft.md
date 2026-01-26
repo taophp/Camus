@@ -4,12 +4,12 @@ title: Define KISS CLI workflow and behavior (draft)
 status: To Do
 assignee: []
 created_date: ''
-updated_date: '2026-01-22 14:23'
+updated_date: '2026-01-26 09:36'
 labels:
   - spec
   - kiss
   - tooling
-milestone: Tools (kiss)
+milestone: m-2
 dependencies: []
 ordinal: 5000
 ---
