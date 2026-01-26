@@ -2,7 +2,8 @@ project_name: "Camus"
 default_status: "To Do"
 statuses: ["To Do", "In Progress", "Done"]
 labels: []
-milestones: []
+milestones:
+  - "Initialisation"
 date_format: yyyy-mm-dd
 max_column_width: 20
 auto_open_browser: true

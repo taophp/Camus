@@ -9,7 +9,7 @@ labels:
   - backlog
   - config
   - process
-milestone: Initialisation
+milestone: m-0
 dependencies: []
 ordinal: 10000
 ---

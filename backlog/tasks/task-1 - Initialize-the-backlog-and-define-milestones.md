@@ -1,7 +1,7 @@
 ---
 id: task-1
 title: Initialize the backlog and define milestones
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-01-22 11:11'
 updated_date: '2026-01-26 09:43'
