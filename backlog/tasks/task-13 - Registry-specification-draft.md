@@ -4,13 +4,13 @@ title: Registry specification (draft)
 status: To Do
 assignee: []
 created_date: ''
-updated_date: '2026-01-23 12:30'
+updated_date: '2026-01-26 09:38'
 labels:
   - spec
   - registry
   - security
   - publication
-milestone: Publication & registry
+milestone: m-5
 dependencies: []
 ordinal: 13000
 ---
