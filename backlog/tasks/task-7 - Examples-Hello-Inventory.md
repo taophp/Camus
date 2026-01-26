@@ -4,12 +4,12 @@ title: 'Examples: Hello & Inventory'
 status: To Do
 assignee: []
 created_date: ''
-updated_date: '2026-01-22 14:28'
+updated_date: '2026-01-26 09:38'
 labels:
   - examples
   - doc
   - spec
-milestone: Examples & Demonstrations
+milestone: m-3
 dependencies: []
 ordinal: 7000
 ---
