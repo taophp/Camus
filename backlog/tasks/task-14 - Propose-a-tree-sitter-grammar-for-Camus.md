@@ -4,13 +4,13 @@ title: Propose a tree-sitter grammar for Camus
 status: To Do
 assignee: []
 created_date: ''
-updated_date: '2026-01-23 12:33'
+updated_date: '2026-01-26 09:39'
 labels:
   - spec
   - parser
   - grammar
   - tooling
-milestone: Syntax exploration
+milestone: m-6
 dependencies: []
 ordinal: 14000
 ---
