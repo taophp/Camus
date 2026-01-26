@@ -4,7 +4,7 @@ title: 'Formalize vocabulary: claim, tests vs clues'
 status: To Do
 assignee: []
 created_date: ''
-updated_date: '2026-01-26 09:33'
+updated_date: '2026-01-26 13:05'
 labels:
   - backlog
   - config
@@ -29,7 +29,7 @@ function sortList(list: Array[Int]) -> Array[Int]
     audit_ref "registry:audits/1234"
   }
   {
-    // Camus body — written and audited by a human
+    // Camus body — written by AI and audited by a human
   }
 ```
 <!-- SECTION:DESCRIPTION:END -->
