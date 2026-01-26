@@ -4,12 +4,12 @@ title: Document KISS signing policy
 status: To Do
 assignee: []
 created_date: ''
-updated_date: '2026-01-23 12:19'
+updated_date: '2026-01-26 09:38'
 labels:
   - spec
   - security
   - signing
-milestone: Security & certification
+milestone: m-4
 dependencies: []
 ordinal: 9000
 ---
