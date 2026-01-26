@@ -4,7 +4,7 @@ title: 'Formalize vocabulary: claim, tests vs clues'
 status: To Do
 assignee: []
 created_date: ''
-updated_date: '2026-01-26 13:05'
+updated_date: '2026-01-26 13:07'
 labels:
   - backlog
   - config
@@ -91,7 +91,6 @@ function sortList(list: Array[Int]) -> Array[Int]
 - [ ] #3 A minimal data schema (JSON Schema / YAML example) is written for `claim` (format for `tests` + `clues`).
 - [ ] #4 Concrete examples (Hello, Inventory or sortList) are added under `Camus/examples/` (or an agreed examples directory) demonstrating `claim` + `tests` + `clues`.
 - [ ] #5 Decisions are referenced from ticket `task-1 - Initialize the backlog and define milestones` and linked from `60-design.md`.
-- [ ] #6 (Optional / Nice-to-have) A small local demo script `kiss test` that reads the example and runs a simple test is provided to validate the approach (light prototype, not production).
 <!-- AC:END -->
 
 ## Implementation Plan
