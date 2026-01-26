@@ -4,12 +4,12 @@ title: Draft 60-design.md (Decisions & Design)
 status: To Do
 assignee: []
 created_date: ''
-updated_date: '2026-01-22 14:20'
+updated_date: '2026-01-26 09:35'
 labels:
   - design
   - doc
   - spec
-milestone: Language specifications
+milestone: m-1
 dependencies: []
 ordinal: 3000
 ---
