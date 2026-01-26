@@ -4,14 +4,14 @@ title: KISS formatter & canonicalization specification
 status: To Do
 assignee: []
 created_date: ''
-updated_date: '2026-01-23 12:28'
+updated_date: '2026-01-26 09:37'
 labels:
   - spec
   - formatter
   - canonicalization
   - kiss
   - tooling
-milestone: Tools (kiss)
+milestone: m-2
 dependencies: []
 ordinal: 12000
 ---
