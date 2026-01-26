@@ -4,13 +4,13 @@ title: Scaffold KISS CLI in Rust (skeleton)
 status: To Do
 assignee: []
 created_date: ''
-updated_date: '2026-01-23 12:25'
+updated_date: '2026-01-26 09:36'
 labels:
   - tooling
   - kiss
   - rust
   - cli
-milestone: Tools (kiss)
+milestone: m-2
 dependencies: []
 ordinal: 11000
 ---
