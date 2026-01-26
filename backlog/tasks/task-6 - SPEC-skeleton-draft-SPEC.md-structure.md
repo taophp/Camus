@@ -4,11 +4,11 @@ title: 'SPEC skeleton: draft SPEC.md structure'
 status: To Do
 assignee: []
 created_date: ''
-updated_date: '2026-01-22 14:26'
+updated_date: '2026-01-26 09:35'
 labels:
   - spec
   - doc
-milestone: Language specifications
+milestone: m-1
 dependencies: []
 ordinal: 6000
 ---
