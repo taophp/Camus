@@ -1,4 +1,30 @@
+## AI Agent Rules – Quick Reference
 
+- Always use `backlog`; **never edit task files directly**.  
+- Do **not** modify, create, or reorder tasks/milestones without human approval.  
+- Always propose actions, list out-of-scope items, and **wait for explicit confirmation**.  
+- Mark any tentative content clearly; **do not assume or guess**.  
+- When in doubt, **stop and ask**.
+
+# Rules for AI Agents 
+
+All AI agents interacting with this repository **MUST strictly follow these rules**:
+
+1. **Always use the official CLI tool (`backlog`)** for creating, modifying, or managing tasks, milestones, and structured items.  
+   Direct editing of task files is **forbidden**.
+
+2. **No autonomous modifications**: AI agents MUST NOT create, reorder, or complete any task, milestone, or project structure without prior human approval.
+
+3. **Validation before action**: Before performing any action that changes repository content, the AI agent must:
+   - Propose in detail **what will be done**.
+   - List **what is out of scope**.
+   - Wait for **explicit human confirmation**.
+
+4. **Tentative content**: Any output that could create narrative or structural obligations (tasks, milestones, specifications) must be marked as **tentative** until approved.
+
+5. **Default behavior on uncertainty**: When unsure, **stop and ask**. Never guess, infer, or auto-complete project structure or content.
+
+6. **Accountability**: Non-compliance with these rules is a **violation of repository governance policy**.
 
 <!-- BACKLOG.MD GUIDELINES START -->
 # Instructions for the usage of Backlog.md CLI Tool
