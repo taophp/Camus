@@ -1,10 +1,10 @@
 ---
 id: task-15
 title: Define milestones
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-01-29 12:49'
-updated_date: '2026-01-29 12:52'
+updated_date: '2026-01-29 13:06'
 labels: []
 milestone: m-0
 dependencies: []
